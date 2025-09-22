@@ -40,10 +40,11 @@ class IndividuMonstre(
      * @return Expérience cumulée nécessaire pour atteindre ce niveau.
      */
     fun palierExp(niveau:Int): Double {
-        return (100.0*(niveau-1)).pow(2)
+        return 100.0*(niveau-1).toDouble().pow(2)
     }
 
     fun levelUp(){
+        niveau += 1
         attaque = round((attaque*potentiel)).toInt()+Random.nextInt(-2,2)
         defense = round((defense*potentiel)).toInt()+Random.nextInt(-2,2)
         vitesse = round((vitesse*potentiel)).toInt()+Random.nextInt(-2,2)
@@ -59,15 +60,48 @@ class IndividuMonstre(
         set(value) {
             field = value
             var estNiveau1 = (niveau == 1)
-            if (field >= palierExp(niveau)) {
+            while (field >= palierExp(niveau)) {
                 levelUp()
-                estNiveau1 = false
-            }
+
             if (estNiveau1 == false) println("Le montre $nom est maintenant niveau $niveau !")
+            }
         }
 
     init {
         this.exp = expInit // applique le setter et déclenche un éventuel level-up
     }
 
+    /**
+     * Attaque un autre [IndividuMonstre] et inflige des dégâts.
+     *
+     * Les dégâts sont calculés de manière très simple pour le moment :
+     * `dégâts = attaque - (défense / 2)` (minimum 1 dégât).
+     *
+     * @param cible Monstre cible de l'attaque.
+     */
+
+    fun attaquer(monstre: IndividuMonstre) {
+        var degatBrut = this.attaque
+        var degatTotal = degatBrut-(this.defense / 2)
+
+        if (degatTotal < 1) degatTotal =1
+
+        var pvAvant = monstre.pv
+        monstre.pv -= degatTotal
+        var pvApres = monstre.pv
+
+        println("${nom} inflige ${pvAvant - pvApres} dégats à ${monstre.nom}")
+
+    }
+
+
+
+
+    override fun toString(): String {
+        val textePresentation =
+            "- Nom : ${nom}\n - Espece : ${espece.nom}\n - Point de vie : ${pv}\n - Point de vie max : ${pvMax}\n " +
+            "- Attaque : ${attaque}\n - Defense : ${defense}\n - Vitesse : ${vitesse}\n " +
+            "- AttaqueSpe : ${attaqueSpe}\n - Defense : ${defenseSpe}\n - Potentiel : ${potentiel}\n"
+        return textePresentation
+    }
 }
