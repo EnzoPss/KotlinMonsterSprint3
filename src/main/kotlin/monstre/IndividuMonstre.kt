@@ -8,7 +8,7 @@ import kotlin.math.round
 
 class IndividuMonstre(
     val id: Int,
-    val nom: String,
+    var nom: String,
     val espece: EspeceMonstre,
     val entraineur: Entraineur?,
 
@@ -17,11 +17,41 @@ class IndividuMonstre(
 
     var niveau: Int = 1
     var attaque: Int = espece.baseAttaque + Random.nextInt(-2,2)
+        get() = field
+        set(value) {
+            field = value
+            if (field <=0) field = 1
+        }
     var defense: Int = espece.baseDefense + Random.nextInt(-2,2)
+        get() = field
+        set(value) {
+            field = value
+            if (field <=0) field = 1
+        }
     var vitesse: Int = espece.baseVitesse + Random.nextInt(-2,2)
+        get() = field
+        set(value) {
+            field = value
+            if (field <=0) field = 1
+        }
     var attaqueSpe: Int = espece.baseAttaqueSpe + Random.nextInt(-2,2)
+        get() = field
+        set(value) {
+            field = value
+            if (field <=0) field = 1
+        }
     var defenseSpe: Int = espece.baseDefenseSpe + Random.nextInt(-2,2)
+        get() = field
+        set(value) {
+            field = value
+            if (field <=0) field = 1
+        }
     var pvMax: Int = espece.basePv + Random.nextInt(-5,5)
+        get() = field
+        set(value) {
+            field = value
+            if (field <=0) field = 1
+        }
     var potentiel: Double = Random.nextDouble(0.5,2.0)
     /**
      *  @property pv  Points de vie actuels.
@@ -45,12 +75,12 @@ class IndividuMonstre(
 
     fun levelUp(){
         niveau += 1
-        attaque = round((attaque*potentiel)).toInt()+Random.nextInt(-2,2)
-        defense = round((defense*potentiel)).toInt()+Random.nextInt(-2,2)
-        vitesse = round((vitesse*potentiel)).toInt()+Random.nextInt(-2,2)
-        attaqueSpe = round((attaqueSpe*potentiel)).toInt()+Random.nextInt(-2,2)
-        defenseSpe = round((defenseSpe*potentiel)).toInt()+Random.nextInt(-2,2)
-        pvMax = round((pvMax*potentiel)).toInt()+Random.nextInt(-5,5)
+        attaque = round((this.espece.modAttaque*potentiel)).toInt()+Random.nextInt(-2,2)
+        defense = round((this.espece.modDefense*potentiel)).toInt()+Random.nextInt(-2,2)
+        vitesse = round((this.espece.modVitesse*potentiel)).toInt()+Random.nextInt(-2,2)
+        attaqueSpe = round((this.espece.modAttaqueSpe*potentiel)).toInt()+Random.nextInt(-2,2)
+        defenseSpe = round((this.espece.modDefenseSpe*potentiel)).toInt()+Random.nextInt(-2,2)
+        pvMax = round((this.espece.modPv*potentiel)).toInt()+Random.nextInt(-5,5)
     }
 
 
@@ -95,6 +125,11 @@ class IndividuMonstre(
     }
 
 
+    fun renommer() {
+        println("Renommer ${nom}")
+        var nouvNom= readln().toString()
+        if (nouvNom != "") nom = nouvNom
+    }
 
 
     override fun toString(): String {

@@ -42,8 +42,8 @@ fun main() {
     //println(especeBugsyface.afficheArt())
     //println(especeGalum.afficheArt())
 
-    monstre1.pv += 10000
-    monstre2.attaquer(monstre1)
+    println(monstre1)
+    monstre1.renommer()
     println(monstre1)
 
 
