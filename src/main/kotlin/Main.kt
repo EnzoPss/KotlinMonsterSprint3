@@ -1,6 +1,8 @@
 package org.example
 
 import org.example.dresseur.Entraineur
+import org.example.item.Badge
+import org.example.item.MonsterKube
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
@@ -23,7 +25,9 @@ val monstre1 = IndividuMonstre(1, "springleaf", especeSpringleaf, null, 1500.0)
 val monstre2 = IndividuMonstre(2, "flamkip", especeFlamkip, null, 1500.0)
 val monstre3 = IndividuMonstre(3, "aquamy", especeAquamy, null, 1500.0)
 
+//val badgePierre = Badge(1, "Badge roche", "c'est un badge", null)
 
+var kube = MonsterKube(1, "le kube", "kube de capture", 0.5)
 
 fun main() {
 
@@ -43,6 +47,7 @@ fun main() {
     //println(especeGalum.afficheArt())
 
     monstre1.afficheDetail()
+
 
 
 }
