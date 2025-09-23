@@ -75,12 +75,12 @@ class IndividuMonstre(
 
     fun levelUp(){
         niveau += 1
-        attaque = round((this.espece.modAttaque*potentiel)).toInt()+Random.nextInt(-2,2)
-        defense = round((this.espece.modDefense*potentiel)).toInt()+Random.nextInt(-2,2)
-        vitesse = round((this.espece.modVitesse*potentiel)).toInt()+Random.nextInt(-2,2)
-        attaqueSpe = round((this.espece.modAttaqueSpe*potentiel)).toInt()+Random.nextInt(-2,2)
-        defenseSpe = round((this.espece.modDefenseSpe*potentiel)).toInt()+Random.nextInt(-2,2)
-        pvMax = round((this.espece.modPv*potentiel)).toInt()+Random.nextInt(-5,5)
+        attaque += round((this.espece.modAttaque*potentiel)).toInt()+Random.nextInt(-2,2)
+        defense += round((this.espece.modDefense*potentiel)).toInt()+Random.nextInt(-2,2)
+        vitesse += round((this.espece.modVitesse*potentiel)).toInt()+Random.nextInt(-2,2)
+        attaqueSpe += round((this.espece.modAttaqueSpe*potentiel)).toInt()+Random.nextInt(-2,2)
+        defenseSpe += round((this.espece.modDefenseSpe*potentiel)).toInt()+Random.nextInt(-2,2)
+        pvMax += round((this.espece.modPv*potentiel)).toInt()+Random.nextInt(-5,5)
     }
 
 
@@ -131,12 +131,24 @@ class IndividuMonstre(
         if (nouvNom != "") nom = nouvNom
     }
 
+    fun afficheDetail() {
+        print(espece.afficheArt())
+        println("============================\n" +
+                "Nom : ${nom}    Lvl : ${niveau}\n Exp : ${exp}    Hp : ${pv}/${pvMax}\n" +
+                "============================\n" +
+                "Atk : ${attaque}    Def : ${defense}    Spd : ${vitesse}\n" +
+                "AtkSpe : ${attaqueSpe}    DefSpe : ${defenseSpe}\n" +
+                "Potentiel : ${potentiel}\n" +
+                "============================"
+                )
+    }
+
 
     override fun toString(): String {
         val textePresentation =
             "- Nom : ${nom}\n - Espece : ${espece.nom}\n - Point de vie : ${pv}\n - Point de vie max : ${pvMax}\n " +
             "- Attaque : ${attaque}\n - Defense : ${defense}\n - Vitesse : ${vitesse}\n " +
-            "- AttaqueSpe : ${attaqueSpe}\n - Defense : ${defenseSpe}\n - Potentiel : ${potentiel}\n"
+            "- AttaqueSpe : ${attaqueSpe}\n - DefenseSpe : ${defenseSpe}\n - Potentiel : ${potentiel}\n"
         return textePresentation
     }
 }

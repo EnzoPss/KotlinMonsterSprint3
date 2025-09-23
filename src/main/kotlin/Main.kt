@@ -42,12 +42,11 @@ fun main() {
     //println(especeBugsyface.afficheArt())
     //println(especeGalum.afficheArt())
 
-    println(monstre1)
-    monstre1.renommer()
-    println(monstre1)
+    monstre1.afficheDetail()
 
 
 }
+
 
 
 /**
