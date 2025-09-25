@@ -27,7 +27,7 @@ val monstre3 = IndividuMonstre(3, "aquamy", especeAquamy, null, 1500.0)
 
 //val badgePierre = Badge(1, "Badge roche", "c'est un badge", null)
 
-var kube = MonsterKube(1, "le kube", "kube de capture", 0.5)
+var kube = MonsterKube(1, "le kube", "kube de capture", 50.0)
 
 fun main() {
 
@@ -46,9 +46,10 @@ fun main() {
     //println(especeBugsyface.afficheArt())
     //println(especeGalum.afficheArt())
 
-    monstre1.afficheDetail()
+    //monstre1.afficheDetail()
 
-
+    monstre1.pv = 1
+    kube.utiliser(monstre1)
 
 }
 

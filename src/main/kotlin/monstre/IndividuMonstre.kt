@@ -110,17 +110,17 @@ class IndividuMonstre(
      * @param cible Monstre cible de l'attaque.
      */
 
-    fun attaquer(monstre: IndividuMonstre) {
+    fun attaquer(cible: IndividuMonstre) {
         var degatBrut = this.attaque
         var degatTotal = degatBrut-(this.defense / 2)
 
         if (degatTotal < 1) degatTotal =1
 
-        var pvAvant = monstre.pv
-        monstre.pv -= degatTotal
-        var pvApres = monstre.pv
+        var pvAvant = cible.pv
+        cible.pv -= degatTotal
+        var pvApres = cible.pv
 
-        println("${nom} inflige ${pvAvant - pvApres} dégats à ${monstre.nom}")
+        println("${nom} inflige ${pvAvant - pvApres} dégats à ${cible.nom}")
 
     }
 
@@ -144,11 +144,11 @@ class IndividuMonstre(
     }
 
 
-    override fun toString(): String {
-        val textePresentation =
-            "- Nom : ${nom}\n - Espece : ${espece.nom}\n - Point de vie : ${pv}\n - Point de vie max : ${pvMax}\n " +
-            "- Attaque : ${attaque}\n - Defense : ${defense}\n - Vitesse : ${vitesse}\n " +
-            "- AttaqueSpe : ${attaqueSpe}\n - DefenseSpe : ${defenseSpe}\n - Potentiel : ${potentiel}\n"
-        return textePresentation
-    }
+    //override fun toString(): String {
+    //    val textePresentation =
+    //        "- Nom : ${nom}\n - Espece : ${espece.nom}\n - Point de vie : ${pv}\n - Point de vie max : ${pvMax}\n " +
+    //        "- Attaque : ${attaque}\n - Defense : ${defense}\n - Vitesse : ${vitesse}\n " +
+    //        "- AttaqueSpe : ${attaqueSpe}\n - DefenseSpe : ${defenseSpe}\n - Potentiel : ${potentiel}\n"
+    //    return textePresentation
+    //}
 }
