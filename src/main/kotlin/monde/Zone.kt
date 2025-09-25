@@ -1,5 +1,6 @@
 package org.example.monde
 
+import org.example.dresseur.Entraineur
 import org.example.monstre.EspeceMonstre
 import org.jetbrains.annotations.Nullable
 
@@ -11,9 +12,19 @@ class Zone(
     var zoneSuivante : Zone?,
     var zonePrecedante : Zone?,
 
-    //TODO genereMonstre()
+
     //TODO rencontreMonstre()
 
 ) {
+
+    fun genereMonstre() {
+        var id: Int
+        var espece: String
+        var nom: String
+        var entraineur: Entraineur?
+        var expInit: Double
+
+
+    }
 
 }
