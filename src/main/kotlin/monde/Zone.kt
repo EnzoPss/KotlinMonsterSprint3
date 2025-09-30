@@ -1,8 +1,11 @@
 package org.example.monde
 
 import org.example.dresseur.Entraineur
+import org.example.joueur
 import org.example.monstre.EspeceMonstre
+import org.example.monstre.IndividuMonstre
 import org.jetbrains.annotations.Nullable
+import kotlin.random.Random
 
 class Zone(
     var id : Int,
@@ -18,13 +21,15 @@ class Zone(
 ) {
 
     fun genereMonstre() {
-        var id: Int
-        var espece: String
-        var nom: String
-        var entraineur: Entraineur?
-        var expInit: Double
+        var especeAlea = this.especesMonstres.random()
+        var nouveauMonstre = IndividuMonstre(Random.nextInt(4,151), especeAlea.nom, especeAlea, null, expZone * Random.nextDouble(0.8,1.2))
+    }
 
-
+    fun rencontreMonstre() {
+        var monstreSauvage = genereMonstre()
+        for (monstre in joueur.equipeMonstre) {
+            if (monstre.pv > 0) {var premierMonstre = monstre}
+        }
     }
 
 }
