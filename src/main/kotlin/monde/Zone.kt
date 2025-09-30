@@ -16,9 +16,6 @@ class Zone(
     var zoneSuivante : Zone?,
     var zonePrecedante : Zone?,
 
-
-    //TODO rencontreMonstre()
-
 ) {
 
     fun genereMonstre(): IndividuMonstre {
@@ -30,7 +27,7 @@ class Zone(
 
     fun rencontreMonstre() {
         var monstreSauvage = genereMonstre()
-        var premierMonstre : IndividuMonstre? = null
+        var premierMonstre: IndividuMonstre? = null
         for (monstre in joueur.equipeMonstre) {
             if (monstre.pv > 0) {premierMonstre = monstre}
         }

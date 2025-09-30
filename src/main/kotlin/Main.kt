@@ -21,9 +21,9 @@ var zone1 = Zone(1,"Zone du début", 2000, mutableListOf(especeSpringleaf, espec
 var zone2 = Zone(2,"Zone après le début", 10_000, mutableListOf(especeLaoumi, especeBugsyface, especeGalum), null, null)
 
 
-val monstre1 = IndividuMonstre(1, "springleaf", especeSpringleaf, null, 1500.0)
-val monstre2 = IndividuMonstre(2, "flamkip", especeFlamkip, null, 1500.0)
-val monstre3 = IndividuMonstre(3, "aquamy", especeAquamy, null, 1500.0)
+//val monstre1 = IndividuMonstre(1, "springleaf", especeSpringleaf, null, 1500.0)
+//val monstre2 = IndividuMonstre(2, "flamkip", especeFlamkip, null, 1500.0)
+//val monstre3 = IndividuMonstre(3, "aquamy", especeAquamy, null, 1500.0)
 
 //val badgePierre = Badge(1, "Badge roche", "c'est un badge", null)
 
@@ -48,8 +48,8 @@ fun main() {
 
     //monstre1.afficheDetail()
 
-    monstre1.pv = 1
-    kube.utiliser(monstre1)
+    //monstre1.pv = 1
+    //kube.utiliser(monstre1)
 
 }
 
