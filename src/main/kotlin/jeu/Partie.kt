@@ -37,11 +37,50 @@ class Partie(
 
     }
 
-    fun modifierOrdreEquipe() {
+    fun modifierOrdreEquipe(){
 
+        println("Entrez la position du monstre que vous voulez déplacer : ")
+        var position1 = readln().toInt()
 
+        println("Entrez la nouvelle position du monstre : ")
+        var position2 = readln().toInt()
+
+        var firstPokemon = joueur.equipeMonstre[position1]
+        var secondPokemon = joueur.equipeMonstre[position2]
+
+        joueur.equipeMonstre[position1] = secondPokemon
+        joueur.equipeMonstre[position2] = firstPokemon
+
+        println(joueur.equipeMonstre)
 
     }
 
+
+    fun examineEquipe() {
+
+        for (monstres in joueur.equipeMonstre){
+            print(joueur.equipeMonstre.indexOf(monstres))
+            monstres.afficheDetail()
+        }
+        println()
+        println("Menu principal : q" +
+                "Modifier l'ordre des monstres : m"+
+                "Tapez le numéro du monstre pour voir les détails :")
+
+        var choix = readln()
+        if(choix.lowercase() == "q") return
+        else if(choix.lowercase() == "m") modifierOrdreEquipe()
+        else if(choix.toInt() in 1..6){
+            var monstre = joueur.equipeMonstre[choix.toInt()-1]
+            monstre.afficheDetail()
+        } else {
+            println("Numero de montre inexistant")
+            examineEquipe()}
+    }
+
+
+    fun jouer() {
+
+    }
 
 }
