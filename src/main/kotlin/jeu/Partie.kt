@@ -1,6 +1,8 @@
 package org.example.jeu
 
 import org.example.dresseur.Entraineur
+import org.example.especeAquamy
+import org.example.especeFlamkip
 import org.example.especeSpringleaf
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
@@ -14,8 +16,8 @@ class Partie(
 
     fun choixStarter() {
         var starter1 = IndividuMonstre(1, "springleaf", especeSpringleaf, null, 1500.0)
-        var starter2 = IndividuMonstre(2, "flamkip", especeSpringleaf, null, 1500.0)
-        var starter3 = IndividuMonstre(3, "aquamy", especeSpringleaf, null, 1500.0)
+        var starter2 = IndividuMonstre(2, "flamkip", especeFlamkip, null, 1500.0)
+        var starter3 = IndividuMonstre(3, "aquamy", especeAquamy, null, 1500.0)
         var starter: IndividuMonstre? = null
 
         starter1.afficheDetail()

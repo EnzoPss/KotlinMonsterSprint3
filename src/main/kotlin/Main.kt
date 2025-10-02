@@ -48,12 +48,10 @@ fun main() {
     joueur.sacAItems.add(kube1)
 
     val partie = nouvellePartie()
-    partie.choixStater()
+    partie.choixStarter()
     partie.jouer()
 
 }
-
-
 
 
 
