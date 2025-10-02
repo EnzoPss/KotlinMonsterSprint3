@@ -80,7 +80,22 @@ class Partie(
 
 
     fun jouer() {
+        println("Vous ete actuellement dans la zone : ${zone.nom}. Vous pouvez :\n" +
+                "1. Rencontrer un monstre sauvage\n" +
+                "2. Examiner l'equipe de monstres\n")
+        if (zone.zoneSuivante != null ) println("3. Aller a la zone suivante")
+        if (zone.zonePrecedante != null ) println("3. Retourner a la zone precedente")
 
+        var action = readln().toInt()
+
+        when (action){
+            1 -> jouer()
+            2 -> examineEquipe()
+            3 -> zone = zone.zoneSuivante!!
+            4 -> zone = zone.zonePrecedante!!
+
+            else -> println("entré invalide")
+        }
     }
 
 }
