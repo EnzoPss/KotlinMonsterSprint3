@@ -4,6 +4,7 @@ import Utilisable
 import org.example.dresseur.Entraineur
 import org.example.joueur
 import org.example.monstre.IndividuMonstre
+import org.example.monde.Zone
 
 class CombatMonstre(
     var monstreJoueur: IndividuMonstre,
@@ -92,12 +93,12 @@ class CombatMonstre(
 
     fun afficherCombat() {
         println("======== Début Round : ${round} ========\n" +
-        "Niveau : ${monstreSauvage.pvMax}\n" +
-        "Pv : ${monstreSauvage.pv / monstreSauvage.pvMax}\n" +
+        "Niveau : ${monstreSauvage.niveau}\n" +
+        "Pv : ${monstreSauvage.pv} / ${monstreSauvage.pvMax}\n" +
         monstreSauvage.espece.afficheArt(true) +
         monstreJoueur.espece.afficheArt(false) +
         "Niveau : ${monstreJoueur.niveau}\n" +
-        "Pv : ${monstreJoueur.pv / monstreJoueur.pvMax}")
+        "Pv : ${monstreJoueur.pv}  ${monstreJoueur.pvMax}")
     }
 
 
@@ -112,7 +113,7 @@ class CombatMonstre(
             actionAdversaire()
             if (gameOver() == false) actionJoueur()
         }
-        return
+
     }
 
 

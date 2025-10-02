@@ -24,6 +24,7 @@ class Partie(
         starter2.afficheDetail()
         starter3.afficheDetail()
 
+        println("Choisissez votre starter")
         println("1. Springleaf    2. Flamkip    3.Aquamy")
         var choixStarter = readln().toInt()
 
@@ -65,12 +66,12 @@ class Partie(
             monstres.afficheDetail()
         }
         println()
-        println("Menu principal : q" +
-                "Modifier l'ordre des monstres : m"+
-                "Tapez le numéro du monstre pour voir les détails :")
+        println("Menu principal : q\n" +
+                "Modifier l'ordre des monstres : m\n"+
+                "Tapez le numéro du monstre pour voir les détails :\n")
 
         var choix = readln()
-        if(choix.lowercase() == "q") return
+        if(choix.lowercase() == "q") jouer()
         else if(choix.lowercase() == "m") modifierOrdreEquipe()
         else if(choix.toInt() in 1..6){
             var monstre = joueur.equipeMonstre[choix.toInt()-1]
@@ -82,6 +83,9 @@ class Partie(
 
 
     fun jouer() {
+        while(true){
+
+
         println("Vous ete actuellement dans la zone : ${zone.nom}. Vous pouvez :\n" +
                 "1. Rencontrer un monstre sauvage\n" +
                 "2. Examiner l'equipe de monstres\n")
@@ -91,12 +95,13 @@ class Partie(
         var action = readln().toInt()
 
         when (action){
-            1 -> jouer()
+            1 -> zone.rencontreMonstre()
             2 -> examineEquipe()
             3 -> zone = zone.zoneSuivante!!
             4 -> zone = zone.zonePrecedante!!
 
             else -> println("entré invalide")
+        }
         }
     }
 

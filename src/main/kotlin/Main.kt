@@ -18,8 +18,8 @@ var especeLaoumi = EspeceMonstre(8,	"Laoumi",	"Animal",	58,	11,	10,	9,	8,	11,	23
 var especeBugsyface = EspeceMonstre(10,	"Bugsyface",	"Insecte",	45,	10,	13,	8,	7,	13,	21.0,	7.0,	11.0,	6.5,	8.0,	11.5,	"Insecte à carapace luisante, se déplace par bonds et vibre des antennes.",	"Sa carapace devient plus dure après chaque mue.",	"Travailleur, sociable, infatigable")
 var especeGalum = EspeceMonstre(13,	"Galum",	"Minéral",	55,	12,	15,	6,	8,	12,	13.0,	9.0,	13.0,	4.0,	6.5,	10.5,	"Golem ancien de pierre, yeux lumineux en garde.",	"Peut rester immobile des heures comme une statue.",	"Sérieux, stoïque, fiable")
 
-var route1 = Zone(1,"Zone du début", 2000, mutableListOf(especeSpringleaf, especeFlamkip, especeAquamy), null, null )
-var route2 = Zone(2,"Zone après le début", 10_000, mutableListOf(especeLaoumi, especeBugsyface, especeGalum), null, null)
+var zone1 = Zone(1,"Zone du début", 600, mutableListOf(especeSpringleaf, especeFlamkip, especeAquamy), null, null )
+var zone2 = Zone(2,"Zone après le début", 800, mutableListOf(especeLaoumi, especeBugsyface, especeGalum), null, null)
 
 
 //val monstre1 = IndividuMonstre(1, "springleaf", especeSpringleaf, null, 1500.0)
@@ -28,7 +28,8 @@ var route2 = Zone(2,"Zone après le début", 10_000, mutableListOf(especeLaoumi,
 
 //val badgePierre = Badge(1, "Badge roche", "c'est un badge", null)
 
-var kube1 = MonsterKube(1, "le kube", "kube de capture", 50.0)
+var kube1 = MonsterKube(1, "le kube",
+    "kube de capture", 50.0)
 
 
 fun nouvellePartie(): Partie{
@@ -36,15 +37,15 @@ fun nouvellePartie(): Partie{
     var nomJoueur = readln()
     joueur.nom = nomJoueur
 
-    var nouvelleGame: Partie = Partie(1, joueur, route1)
+    var nouvelleGame: Partie = Partie(1, joueur, zone1)
     return nouvelleGame
 }
 
 
 fun main() {
 
-    route1.zoneSuivante = route2
-    route2.zonePrecedante = route1
+    zone1.zoneSuivante = zone2
+    zone2.zonePrecedante = zone1
     joueur.sacAItems.add(kube1)
 
     val partie = nouvellePartie()
