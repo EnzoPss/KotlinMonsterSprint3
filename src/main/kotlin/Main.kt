@@ -3,12 +3,13 @@ package org.example
 import org.example.dresseur.Entraineur
 import org.example.item.Badge
 import org.example.item.MonsterKube
+import org.example.jeu.Partie
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
 
 var joueur = Entraineur(1, "Sacha", 100)
-var rival = Entraineur(2,"Regis",200)
+var rival = Entraineur(2,"Rival",500)
 
 var especeSpringleaf = EspeceMonstre(1,	"Springleaf",	"Graine",	60,	9,	11,	10,	12,	14,	34.0,	6.5,	9.0,	8.0,	7.0,	10.0,	"Petit monstre espiègle rond comme une graine, adore le soleil.",	"Sa feuille sur la tête indique son humeur.",	"Curieux, amical, timide")
 var especeFlamkip = EspeceMonstre(4,	"Flamkip",	"Animal",	50,	12,	8,	13,	16,	7,	22.0,	10.0,	5.5,	9.5,	9.5,6.5,	"Petit animal entouré de flammes, déteste le froid.",	"Sa flamme change d’intensité selon son énergie.",	"Impulsif, joueur, loyal")
@@ -17,8 +18,8 @@ var especeLaoumi = EspeceMonstre(8,	"Laoumi",	"Animal",	58,	11,	10,	9,	8,	11,	23
 var especeBugsyface = EspeceMonstre(10,	"Bugsyface",	"Insecte",	45,	10,	13,	8,	7,	13,	21.0,	7.0,	11.0,	6.5,	8.0,	11.5,	"Insecte à carapace luisante, se déplace par bonds et vibre des antennes.",	"Sa carapace devient plus dure après chaque mue.",	"Travailleur, sociable, infatigable")
 var especeGalum = EspeceMonstre(13,	"Galum",	"Minéral",	55,	12,	15,	6,	8,	12,	13.0,	9.0,	13.0,	4.0,	6.5,	10.5,	"Golem ancien de pierre, yeux lumineux en garde.",	"Peut rester immobile des heures comme une statue.",	"Sérieux, stoïque, fiable")
 
-var zone1 = Zone(1,"Zone du début", 2000, mutableListOf(especeSpringleaf, especeFlamkip, especeAquamy), null, null )
-var zone2 = Zone(2,"Zone après le début", 10_000, mutableListOf(especeLaoumi, especeBugsyface, especeGalum), null, null)
+var route1 = Zone(1,"Zone du début", 2000, mutableListOf(especeSpringleaf, especeFlamkip, especeAquamy), null, null )
+var route2 = Zone(2,"Zone après le début", 10_000, mutableListOf(especeLaoumi, especeBugsyface, especeGalum), null, null)
 
 
 //val monstre1 = IndividuMonstre(1, "springleaf", especeSpringleaf, null, 1500.0)
@@ -27,31 +28,38 @@ var zone2 = Zone(2,"Zone après le début", 10_000, mutableListOf(especeLaoumi, 
 
 //val badgePierre = Badge(1, "Badge roche", "c'est un badge", null)
 
-var kube = MonsterKube(1, "le kube", "kube de capture", 50.0)
+var kube1 = MonsterKube(1, "le kube", "kube de capture", 50.0)
+
+
+fun nouvellePartie(): Partie{
+    println("Bonjour et bienvenu !! \n Quel est votre nom ?")
+    var nomJoueur = readln()
+    joueur.nom = nomJoueur
+
+    var nouvelleGame: Partie = Partie(1, joueur, route1)
+    return nouvelleGame
+}
+
 
 fun main() {
 
-    zone1.zoneSuivante = zone2
-    zone2.zonePrecedante = zone1
-    
-    //joueur.afficheDetail()
-    //rival.afficheDetail()
-    //joueur.argents+=50
-    //joueur.afficheDetail()
+    route1.zoneSuivante = route2
+    route2.zonePrecedante = route1
+    joueur.sacAItems.add(kube1)
 
-    //println(especeSpringleaf.afficheArt())
-    //println(especeFlamkip.afficheArt())
-    //println(especeAquamy.afficheArt())
-    //println(especeLaoumi.afficheArt())
-    //println(especeBugsyface.afficheArt())
-    //println(especeGalum.afficheArt())
-
-    //monstre1.afficheDetail()
-
-    //monstre1.pv = 1
-    //kube.utiliser(monstre1)
+    val partie = nouvellePartie()
+    partie.choixStater()
+    partie.jouer()
 
 }
+
+
+
+
+
+
+
+
 
 
 
