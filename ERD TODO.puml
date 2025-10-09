@@ -1,0 +1,79 @@
+@startuml
+!theme plain
+'--------------------------------------------------
+' Diagramme ERD - Kotlin Monsters (SprINT 3)
+'--------------------------------------------------
+
+entity "Entraineur" as Entraineur {
+    * id : INT <<PK>>
+    --
+    nom: CHAR(255)
+    argents:INT
+}
+
+entity "EspeceMonstre" as EspeceMonstre {
+  * id : INT <<PK>>
+  --
+  nom : CHAR(255)
+  type : CHAR(255)
+  baseAttaque : INT
+  baseDefense : INT
+  baseVitesse : INT
+  baseAttaqueSpe : INT
+  baseDefenseSpe : INT
+  basePv : INT
+  modAttaque : DOUBLE
+  modDefense : DOUBLE
+  modVitesse : DOUBLE
+  modAttaqueSpe : DOUBLE
+  modDefenseSpe : DOUBLE
+  modPv : DOUBLE
+  description : TEXT
+  particularites : TEXT
+  caracteres : TEXT
+}
+
+entity "Zone" as Zone {
+    * id : INT
+    --
+    nom : VARCHAR(255)
+    expZone : INT
+    fk_zone_suivante_id : INT <<FK>>
+    fk_zone_precedante_id : INT <<FK>>
+}
+
+entity "Zone_EspeceMonstre" as Zone_EspeceMonstre {
+    fk_zone_id: INT <<PK>><<FK>>
+    fk_espece_monstre_id: INT <<PK>><<FK>>
+}
+
+entity "IndividuMonstre" as IndividuMonstre {
+  * id : INT <<PK>>
+  --
+  nom : CHAR(255)
+  niveau : INT
+  attaque : INT
+  defense : INT
+  vitesse : INT
+  attaqueSpe : INT
+  defenseSpe : INT
+  pvMax : INT
+  potentiel : DOUBLE
+  exp : DOUBLE
+  pv : INT
+  --
+  espece_id : INT <<FK>>
+  entraineur_equipe_id : INT <<FK>>
+  entraineur_boite_id : INT <<FK>>
+}
+
+'--------------------------------------------------
+' Relations
+'--------------------------------------------------
+
+Entraineur ||--o{ IndividuMonstre : "possède (équipe)"
+Entraineur ||--o{ IndividuMonstre : "possède (boîte)"
+EspeceMonstre ||--o{ IndividuMonstre : "appartient à"
+'TODO
+
+@enduml
