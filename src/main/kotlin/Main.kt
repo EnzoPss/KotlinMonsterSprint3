@@ -19,7 +19,7 @@ var especeBugsyface = EspeceMonstre(10,	"Bugsyface",	"Insecte",	45,	10,	13,	8,	7
 var especeGalum = EspeceMonstre(13,	"Galum",	"Minéral",	55,	12,	15,	6,	8,	12,	13.0,	9.0,	13.0,	4.0,	6.5,	10.5,	"Golem ancien de pierre, yeux lumineux en garde.",	"Peut rester immobile des heures comme une statue.",	"Sérieux, stoïque, fiable")
 
 var zone1 = Zone(1,"Zone du début", 600, mutableListOf(especeSpringleaf, especeFlamkip, especeAquamy), null, null )
-var zone2 = Zone(2,"Zone après le début", 800, mutableListOf(especeLaoumi, especeBugsyface, especeGalum), null, null)
+var zone2 = Zone(2,"Zone après le début", 1000, mutableListOf(especeLaoumi, especeBugsyface, especeGalum), null, null)
 
 
 //val monstre1 = IndividuMonstre(1, "springleaf", especeSpringleaf, null, 1500.0)

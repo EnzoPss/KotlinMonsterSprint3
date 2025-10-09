@@ -23,9 +23,9 @@ class CombatMonstre(
      * @return `true` si le joueur a perdu, sinon `false`.
      */
     fun gameOver(): Boolean {
-        var defaite = false
+        var defaite = true
         for (monstre in joueur.equipeMonstre){
-            if (monstre.pv <= 0) defaite = true
+            if (monstre.pv >= 0) defaite = false
         }
         return defaite
     }
@@ -60,31 +60,41 @@ class CombatMonstre(
         if (choix == 1) {
             monstreJoueur.attaquer(monstreSauvage)
         }
-        else if (choix == 2) {
-            println(joueur.sacAItems)
-            var indexChoix = readln().toInt()
-            var objetChoisi = joueur.sacAItems[indexChoix]
-            if(objetChoisi is Utilisable){
-                var captureReussie = objetChoisi.utiliser(monstreSauvage)
-                if (captureReussie) return false else return true
-            } else {
-                println("Objet non utilisable")
-                return true
+        else if (choix.toInt()==2){//choix objet
+            for ((index,objet) in joueur.sacAItems.withIndex()){
+                println("$index => ${objet.nom}")
             }
-        }
-        else if (choix == 3) {
-            for (monstres in joueur.equipeMonstre) {
-                if (monstres.pv > 0) {
-                    println(monstres.afficheDetail())
+            var choixObjet = readln().toString()
+            while ( choixObjet.toInt() !in (0..joueur.sacAItems.size)){
+                println("Veuillez saisir une action valable")
+                choixObjet = readln().toString()
+            }
+            val obj= joueur.sacAItems[choixObjet.toInt()]
+            if(obj is Utilisable){
+                val result= obj.utiliser(monstreSauvage)
+                if (result){
+                    return false
                 }
+            }else{println("Objet non utilisable")}
+
+
+        }
+        else{//changer de monstre
+            for ((index,monster) in joueur.equipeMonstre.withIndex()){
+                println("$index => ${monster.nom}")
             }
-            var indexChoix = readln().toInt()
-            var choixMonstre = joueur.equipeMonstre[indexChoix]
-            if (choixMonstre.pv <= 0) {
-                println("${choixMonstre} remplace ${monstreJoueur}")
-                monstreJoueur = choixMonstre
-            } else {
-                println("Impossible ! Ce montres est KO")
+            var choixMonster = readln()
+            while ( choixMonster.toInt() !in (0..joueur.equipeMonstre.size)){
+                println("Veuillez saisir un monstre encore en vie")
+                choixMonster = readln()
+            }
+            val autreMonstre =joueur.equipeMonstre[choixMonster.toInt()]
+            if (autreMonstre.pv <=0  ){
+                println("Impossible ! Ce monstre est KO")
+            }
+            else{
+                println("${autreMonstre} remplace ${monstreJoueur}")
+                monstreJoueur=autreMonstre
             }
         }
         return true
@@ -104,6 +114,13 @@ class CombatMonstre(
 
     fun jouer() {
 
+        if(monstreJoueur.pv == 0 && gameOver()==false){
+            for (unMonstre in joueur.equipeMonstre){
+                if (unMonstre.pv>0){
+                    monstreJoueur=unMonstre
+                }
+            }
+        }
         afficherCombat()
         if (monstreJoueur.vitesse >= monstreSauvage.vitesse) {
             if (actionJoueur() == false) return

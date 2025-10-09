@@ -74,7 +74,7 @@ class Partie(
         if(choix.lowercase() == "q") jouer()
         else if(choix.lowercase() == "m") modifierOrdreEquipe()
         else if(choix.toInt() in 1..6){
-            var monstre = joueur.equipeMonstre[choix.toInt()-1]
+            var monstre = joueur.equipeMonstre[choix.toInt()]
             monstre.afficheDetail()
         } else {
             println("Numero de montre inexistant")
@@ -85,20 +85,19 @@ class Partie(
     fun jouer() {
         while(true){
 
-
-        println("Vous ete actuellement dans la zone : ${zone.nom}. Vous pouvez :\n" +
-                "1. Rencontrer un monstre sauvage\n" +
-                "2. Examiner l'equipe de monstres\n")
-        if (zone.zoneSuivante != null ) println("3. Aller a la zone suivante")
-        if (zone.zonePrecedante != null ) println("3. Retourner a la zone precedente")
+        print("Vous ete actuellement dans la zone : ${zone.nom}. Vous pouvez :\n" +
+                "    1. Rencontrer un monstre sauvage\n" +
+                "    2. Examiner l'equipe de monstres\n")
+        if (zone.zoneSuivante != null ) println("    3. Aller a la zone suivante")
+        if (zone.zonePrecedante != null ) println("    4. Retourner a la zone precedente")
 
         var action = readln().toInt()
 
         when (action){
             1 -> zone.rencontreMonstre()
             2 -> examineEquipe()
-            3 -> zone = zone.zoneSuivante!!
-            4 -> zone = zone.zonePrecedante!!
+            3 -> if (zone.zoneSuivante != null ) zone = zone.zoneSuivante!!
+            4 -> if (zone.zonePrecedante != null ) zone = zone.zonePrecedante!!
 
             else -> println("entré invalide")
         }

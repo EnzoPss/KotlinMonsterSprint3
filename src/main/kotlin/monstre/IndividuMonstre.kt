@@ -87,7 +87,6 @@ class IndividuMonstre(
     }
 
 
-
     var exp: Double = 0.0
         get() = field
         set(value) {
@@ -146,12 +145,4 @@ class IndividuMonstre(
                 )
     }
 
-
-    //override fun toString(): String {
-    //    val textePresentation =
-    //        "- Nom : ${nom}\n - Espece : ${espece.nom}\n - Point de vie : ${pv}\n - Point de vie max : ${pvMax}\n " +
-    //        "- Attaque : ${attaque}\n - Defense : ${defense}\n - Vitesse : ${vitesse}\n " +
-    //        "- AttaqueSpe : ${attaqueSpe}\n - DefenseSpe : ${defenseSpe}\n - Potentiel : ${potentiel}\n"
-    //    return textePresentation
-    //}
 }
