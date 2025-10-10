@@ -74,6 +74,7 @@ entity "IndividuMonstre" as IndividuMonstre {
 Entraineur ||--o{ IndividuMonstre : "possède (équipe)"
 Entraineur ||--o{ IndividuMonstre : "possède (boîte)"
 EspeceMonstre ||--o{ IndividuMonstre : "appartient à"
-'TODO
+EspeceMonstre ||--o{ Zone_EspeceMonstre : <<FK>>
+Zone ||--o{ Zone_EspeceMonstre : <<FK>>
 
 @enduml
