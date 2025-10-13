@@ -14,7 +14,7 @@ import java.sql.*
  */
 class BDD(
 
-    var url: String = "jdbc:mysql://172.16.0.210:3306/db_Monsters_epousse",
+    var url: String = "jdbc:mysql://172.16.0.210:3306/db_monsters_epousse",
     var user: String = "epousse",
     var password: String = "Umyafo34",
 ) {

@@ -3,10 +3,13 @@ package org.example
 import org.example.dresseur.Entraineur
 import org.example.item.Badge
 import org.example.item.MonsterKube
+import org.example.jdbc.BDD
 import org.example.jeu.Partie
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
+
+val db = BDD()
 
 var joueur = Entraineur(1, "Sacha", 100)
 var rival = Entraineur(2,"Rival",500)
@@ -44,13 +47,15 @@ fun nouvellePartie(): Partie{
 
 fun main() {
 
-    zone1.zoneSuivante = zone2
-    zone2.zonePrecedante = zone1
-    joueur.sacAItems.add(kube1)
+    db.close()
 
-    val partie = nouvellePartie()
-    partie.choixStarter()
-    partie.jouer()
+    //zone1.zoneSuivante = zone2
+    //zone2.zonePrecedante = zone1
+    //joueur.sacAItems.add(kube1)
+
+    //val partie = nouvellePartie()
+    //partie.choixStarter()
+    //partie.jouer()
 
 }
 
