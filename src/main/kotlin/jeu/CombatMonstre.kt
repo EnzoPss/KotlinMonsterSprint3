@@ -60,6 +60,7 @@ class CombatMonstre(
         if (choix == 1) {
             monstreJoueur.attaquer(monstreSauvage)
         }
+
         else if (choix.toInt()==2){//choix objet
             for ((index,objet) in joueur.sacAItems.withIndex()){
                 println("$index => ${objet.nom}")
