@@ -1,15 +1,14 @@
 package org.example
 
+import org.example.DAO.EntraineurDAO
+import org.example.DAO.EspeceMonstreDAO
 import org.example.dresseur.Entraineur
-import org.example.item.Badge
 import org.example.item.MonsterKube
 import org.example.jdbc.BDD
 import org.example.jeu.Partie
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
-import org.example.monstre.IndividuMonstre
 
-val db = BDD()
 
 var joueur = Entraineur(1, "Sacha", 100)
 var rival = Entraineur(2,"Rival",500)
@@ -41,13 +40,21 @@ fun nouvellePartie(): Partie{
     joueur.nom = nomJoueur
 
     var nouvelleGame: Partie = Partie(1, joueur, zone1)
+    joueur.id=0
+    entraineurDAO.save(joueur)
+
     return nouvelleGame
 }
 
 
-fun main() {
+val db = BDD()
 
-    db.close()
+
+//Les DAO
+val entraineurDAO= EntraineurDAO(db)
+
+
+fun main() {
 
     //zone1.zoneSuivante = zone2
     //zone2.zonePrecedante = zone1
@@ -56,6 +63,8 @@ fun main() {
     //val partie = nouvellePartie()
     //partie.choixStarter()
     //partie.jouer()
+
+    db.close()
 
 }
 
